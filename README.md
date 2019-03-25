@@ -25,12 +25,18 @@ import os
 2) Run the final cell, which will run the upload_tests.py script, pushing the test output to codePost
 
 Explanation of additions:
-1) Modifying grade_calc to get_grade_snippet(student_email, assignment_name)
-def get_grade_snippet(student_email, assignment_name):
+## preprocess-add-grade.py
+1) Changing grade_calc to get_grade_snippet: get_grade_snippet adds three lines to the final cell to: 
+    (a) store the autograder output into a variable ```test_output``` 
+    (b) run the ```upload_tests.py``` script from the JupyterHub directory with 3 arguments: ```student_email``` the student, ```assignment_name``` the assignment, ```test_output``` the autograder output. 
 ```
+def get_grade_snippet(student_email, assignment_name):
   return '''"import os\\n",
     "test_output = [ok.grade(q[:-3]) for q in os.listdir('tests') if q.startswith('q')]\\n",
     "%run upload_tests.py {student_email} {assignment_name} test_output"'''.format(student_email=student_email, assignment_name=assignment_name)
 ```
+    In order to call get_grade_snippet, we need the student_email. This is captured as ```student_email=file.split('_')[0]```, assuming a file naming convention of ```<student_email>_<assignment_name>.ipynb```
+2) 
+
 
 
