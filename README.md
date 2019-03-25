@@ -38,18 +38,18 @@ import os
    * Store the autograder output into a variable ```test_output```  
    * Run the ```upload_tests.py``` script from the JupyterHub directory . 
     
-   In order to call get_grade_snippet, we need the `student_email`. This is captured as `student_email=file.split('_')[0]`, assuming a file naming convention of `<student_email>_<assignment_name>.ipynb`
+   In order to call get_grade_snippet, we need the `student_email`. This is captured as `student_email=file.split('_')[0]`, assuming file naming convention of `<student_email>_<assignment_name>.ipynb`
 
-2. Uploading the files in input_dir (the original student notebooks) to codePost, independent of flattening  
+2. Upload `input_dir` (the submitted student notebooks) to codePost
   
-   * The correct assignment object from codePost is retrieved via ```codePost.get_assignment_info_by_name```
-   * ```upload_notebooks(<input_dir>, assignment)``` is called to bulk upload all of the input_dir files to codePost. Once again, the file naming convention of ```<student_email>_<assignment_name>.ipynb``` is assumed. 
+   * The correct assignment object is retrieved via ```codePost.get_assignment_info_by_name```
+   * ```upload_notebooks(<input_dir>, assignment)``` bulk uploads all of the `input_dir` files to codePost. Once again, the file naming convention of ```<student_email>_<assignment_name>.ipynb``` is assumed. 
 
 ### upload_tests.py
 This python script is run in each students' jupyter notebook upon grading. It contains three functions:
 1. ```parse_test_output(test_output)``` 
 
-This function returns the test output content to be uploaded to codePost. **THIS FUNCTION SHOULD BE MODIFIED BY USER FOR DESIRED BEHAVIOR.** For example, if we wanted to expose the full test_output to students, this function would read:
+Returns the test output content to be uploaded to codePost. **THIS FUNCTION SHOULD BE MODIFIED BY USER FOR DESIRED BEHAVIOR.** For example, if we wanted to expose the full test_output to students, this function would read:
 ```
 def parse_test_output(test_output):
   return test_output
@@ -58,7 +58,7 @@ def parse_test_output(test_output):
   
 2. ```add_comments(api_key, test_output, file)```  
 
-This function adds comments to a file after the file has been uploaded to codePost. **THIS FUNCTION SHOULD BE MODIFIED BY USER FOR DESIRED BEHAVIOR.** For example, if we wanted to add a single comment to the top of the file, saying "Good Job! You get an extra point!" with a point value of +1, this function would read:
+Adds comments to a file after the file has been uploaded to codePost. **THIS FUNCTION SHOULD BE MODIFIED BY USER FOR DESIRED BEHAVIOR.** For example, if we wanted to add a single comment to the top of the file, saying "Good Job! You get an extra point!" with a point value of +1, this function would read:
 ```
 def add_comments(api_key, test_output, file):
   codePost.post_comment(api_key, file, "Good Job! You get an extra point!", -1, 0, 1, 0, 0)
@@ -75,6 +75,6 @@ This is the main function, which:
 
 
 ### A few notes on ```upload_tests.py```
-  * Assumed that the student is a valid student in the course. If the student has not been added on codePost to the course then this will not work. 
+  * Assumed that the student is a valid student in the course. If the student has not been added on codePost to the course,  this will not work. 
   * Assumed that an assignment with name of assn_name has been added to codePost for the course of ```course_name | course_period```. If an assignment doesn't exist, this will not work.
   * The name of the file once uploaded is defined at the top of ```upload_tests.py``` as ```test_output_file_name```. If another file exists for a submission of the same name, then the upload will not work. File names must be unique for a submission. 
