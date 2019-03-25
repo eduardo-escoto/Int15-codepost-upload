@@ -5,14 +5,14 @@ import sys
 # install by 'pip install codePost'. Documentation can be found at https://github.com/codepost-io/codePost-python
 import codePost
 
-api_key = "API - KEY" # set API key via %env cp_api_key = <API KEY>
+api_key = "<API - KEY>" # set API key via %env cp_api_key = <API KEY>
 course_name = 'New course'
 course_period = '2019'
 
 def get_grade_snippet(student_email, assignment_name):
   return '''"import os\\n",
     "test_output = [ok.grade(q[:-3]) for q in os.listdir('tests') if q.startswith('q')]\\n",
-    "%run -i upload_tests.py {student_email} {assignment_name}"'''.format(student_email=student_email, assignment_name=assignment_name)
+    "%run -i ../upload_tests.py {student_email} {assignment_name}"'''.format(student_email=student_email, assignment_name=assignment_name)
 
 from shutil import copyfile
 def flatten(input_dir, output_dir, assignment_name):
