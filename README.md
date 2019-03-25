@@ -66,15 +66,15 @@ def add_comments(api_key, test_output, file):
 The syntax of post_comment is ```post_comment(api_key, file, text, pointDelta, startChar, endChar, startLine, endLine, rubricComment=None)```, where pointDelta defaults to negative. For example, a pointDelta of 1 means that the comment will be associated with -1 on codePost.
   
   
-3. ```upload_test_output(api_key, course_name, course_period, student_email, assn_name, test_output)``` 
+3. ```upload_test_output(api_key, course_name, course_period, student_email, assignment_name, test_output)``` 
 
 This is the main function, which:
-  a. Given a ```course_name```, ```course_period```, ```assn_name```, and ```student_email```, finds the student's submission
+  a. Given a ```course_name```, ```course_period```, ```assignment_name```, and ```student_email```, finds the student's submission
   b. Posts a new file ```new_file``` to that student's submission with the conttents of ```parse_test_output(test_output)```
   c. Calls ```add_comments(api_key, test_output, new_file``` to add comments to ```new_file```
 
 
 ### A few notes on ```upload_tests.py```
   * Assumed that the student is a valid student in the course. If the student has not been added on codePost to the course,  this will not work. 
-  * Assumed that an assignment with name of assn_name has been added to codePost for the course of ```course_name | course_period```. If an assignment doesn't exist, this will not work.
+  * Assumed that an assignment with name of assignment_name has been added to codePost for the course of ```course_name | course_period```. If an assignment doesn't exist, this will not work.
   * The name of the file once uploaded is defined at the top of ```upload_tests.py``` as ```test_output_file_name```. If another file exists for a submission of the same name, then the upload will not work. File names must be unique for a submission. 
