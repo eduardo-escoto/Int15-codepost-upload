@@ -9,9 +9,9 @@ course_name = 'New course'
 course_period = '2019'
 student_email = sys.argv[1]
 assignment_name = sys.argv[2]
-test_output = sys.argv[3]
+# test_output = sys.argv[3]
 
-test_output_file_name = "test_output.txt" # NOTE: THIS SHOULD BE EDITED BY USER BASED ON DESIRED BEHAVIOR. File name for codePost
+test_output_file_name = "test_output1.txt" # NOTE: THIS SHOULD BE EDITED BY USER BASED ON DESIRED BEHAVIOR. File name for codePost
 
 def upload_test_output(api_key, course_name, course_period, student_email, assignment_name, test_output):
     # Find Assignment
@@ -49,9 +49,9 @@ def add_comments(api_key, test_output, file):
     # pointDelta is parsed as a negative. e.g., a pointDelta of 1 is -1 on codePost'
     test_by_q = test_output.split("Question")
     for i in test_by_q:
-        if (i.includes("k..")): #indicator that a single test failed
-            comment_text = "{question} has a failed test. [Autograder output]".format(question=i[:3])
-            codePost.post_comment(api_key, file, i[:3], 1, 0, 1, 0, 0)
+        if ("k.." in i): #indicator that a single test failed
+            comment_text = "Question {question} has a failed test. [Autograder output]".format(question=i[:4])
+            codePost.post_comment(api_key, file, comment_text, 1, 0, 1, 0, 0)
 
 if __name__ == "__main__":
     upload_test_output(api_key, course_name, course_period, student_email, assignment_name, test_output)
