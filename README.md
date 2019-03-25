@@ -1,4 +1,4 @@
-# ucsb-codepost-upload
+# ucsb-codePost-upload
 Script for ucsb int 5 upload
 
 ## Process:
