@@ -81,5 +81,5 @@ This is the main function, which:
 
 ### A few notes on ```upload_tests.py```
   * Assumed that the student is a valid student in the course. If the student has not been added on codePost to the course,  this will not work. 
-  * Assumed that an assignment with name of assignment_name has been added to codePost for the course of ```course_name | course_period```. If an assignment doesn't exist, this will not work.
-  * The name of the file once uploaded is defined at the top of ```upload_tests.py``` as ```test_output_file_name```. If another file exists for a submission of the same name, then the upload will not work. File names must be unique for a submission. 
+  * Assumed that an assignment with name of `assignment_name` has been added to codePost for the course of ```course_name | course_period```. If no such assignment exists, this will not work.
+  * The name of the file once uploaded is defined at the top of ```upload_tests.py``` as ```test_output_file_name```. If another file exists for a submission of the same name, then the upload will not work. File names must be unique for a given submission. 
