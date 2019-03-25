@@ -54,7 +54,7 @@ test_output = [ok.grade(q[:-3]) for q in os.listdir('tests') if q.startswith('q'
 This python script is run in each students' jupyter notebook upon grading. It contains three functions:
 1. ```parse_test_output(test_output)``` 
 
-Returns the test output content to be uploaded to codePost. **THIS FUNCTION SHOULD BE MODIFIED BY USER FOR DESIRED BEHAVIOR.** For example, if we wanted to expose the full test_output to students, this function would read:
+Returns the test output content to be uploaded to codePost. **YOU SHOULD MODIFY THIS FUNCTION TO SPECIFY YOUR DESIRED BEHAVIOR.** For example, if we wanted to expose the full test_output to students, this function would read:
 ```
 def parse_test_output(test_output):
   return test_output
@@ -63,7 +63,7 @@ def parse_test_output(test_output):
   
 2. ```add_comments(api_key, test_output, file)```  
 
-Adds comments to a file after the file has been uploaded to codePost. **THIS FUNCTION SHOULD BE MODIFIED BY USER FOR DESIRED BEHAVIOR.** For example, if we wanted to add a single comment to the top of the file, saying "Good Job! You get an extra point!" with a point value of +1, this function would read:
+Adds comments to a file after the file has been uploaded to codePost. **YOU SHOULD MODIFY THIS FUNCTION TO SPECIFY YOUR DESIRED BEHAVIOR.** For example, if we wanted to add a single comment to the top of the file, saying "Good Job! You get an extra point!" with a point value of +1, this function would read:
 ```
 def add_comments(api_key, test_output, file):
   codePost.post_comment(api_key, file, "Good Job! You get an extra point!", -1, 0, 1, 0, 0)
@@ -75,7 +75,7 @@ The syntax of post_comment is ```post_comment(api_key, file, text, pointDelta, s
 
 This is the main function, which:
   a. Given a ```course_name```, ```course_period```, ```assignment_name```, and ```student_email```, finds the student's submission
-  b. Posts a new file ```new_file``` to that student's submission with the conttents of ```parse_test_output(test_output)```
+  b. Posts a new file ```new_file``` to that student's submission with the contents of ```parse_test_output(test_output)```
   c. Calls ```add_comments(api_key, test_output, new_file``` to add comments to ```new_file```
 
 
