@@ -21,9 +21,9 @@ import os
 ```
 2. Run the final cell, which will run the ```upload_tests.py``` script, pushing the test output to codePost
 
-
-
-
+  
+  
+  
 
 ## Explanation of changes:
 ### preprocess-add-grade.py
@@ -39,22 +39,24 @@ The correct assignment object from codePost is retrieved via ```codePost.get_ass
 
 ### upload_tests.py
 This python script is run in each students' jupyter notebook upon grading. It contains three functions:
-1. ```parse_test_output(test_output)```
+1. ```parse_test_output(test_output)``` . 
 This function returns the test output content to be uploaded to codePost. **THIS FUNCTION SHOULD BE MODIFIED BY USER FOR DESIRED BEHAVIOR.** For example, if we wanted to expose the full test_output to students, this function would read:
 ```
 def parse_test_output(test_output):
   return test_output
 ```
-
-2. ```add_comments(api_key, test_output, file)```
+  
+  
+2. ```add_comments(api_key, test_output, file)``` . 
 This function adds comments to a file after the file has been uploaded to codePost. **THIS FUNCTION SHOULD BE MODIFIED BY USER FOR DESIRED BEHAVIOR.** For example, if we wanted to add a single comment to the top of the file, saying "Good Job! You get an extra point!" with a point value of +1, this function would read:
 ```
 def add_comments(api_key, test_output, file):
   codePost.post_comment(api_key, file, "Good Job! You get an extra point!", -1, 0, 1, 0, 0)
 ```
 The syntax of post_comment is ```post_comment(api_key, file, text, pointDelta, startChar, endChar, startLine, endLine, rubricComment=None)```, where pointDelta defaults to negative. For example, a pointDelta of 1 means that the comment will be associated with -1 on codePost.
-
-3. ```upload_test_output(api_key, course_name, course_period, student_email, assn_name, test_output)```:
+  
+  
+3. ```upload_test_output(api_key, course_name, course_period, student_email, assn_name, test_output)``` . 
 This is the main function, which:
   a. Given a ```course_name```, ```course_period```, ```assn_name```, and ```student_email```, finds the student's submission
   b. Posts a new file ```new_file``` to that student's submission with the conttents of ```parse_test_output(test_output)```
