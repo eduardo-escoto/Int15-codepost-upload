@@ -9,9 +9,9 @@ Script for ucsb int 5 upload
 2. After students have submitted, run ```python3 preprocess-add-grade.py <input_dir> <output_dir> <codePost assignment name>```
     This will:
       * Add in codePost test upload code to the final cell in the ```output_dir``` files.
-      * Upload the ```input_dir``` files to codePost. ```input_dir``` files must be named. `<student_email>_<assignment_name>.ipynb`. If this changes, change the code appropriately. 
+      * Upload the ```input_dir``` files to codePost. ```input_dir``` files must be named `<student_email>_<assignment_name>.ipynb`. If this changes, change the code appropriately. 
 3. Upload `output_dir` to the JupyterHub grader repository (same as current process).
-4. `pip3 install codePost` in JupyerHub grader environment
+4. `pip3 install codePost` in JupyerHub grader environment,
 5. Set env variable in JupyterHub ```cp_api_key="API_KEY"``` using the same API key from step 0 above. This can be done by either:  
     * Open up JupyerHub terminal environment and `export cp_api_key=<API_KEY>`.
     * Create a Jupyer notebook in directory and run `%env cp_api_key=<API_KEY>`.
@@ -19,8 +19,8 @@ Script for ucsb int 5 upload
 6. Modify `parse_test_output` and `add_comments` functions in `upload_tests.py` to your desired behavior:
     * `parse_test_output` defines what amount of test output is uploaded to codePost and exposed to students. By default it returns the full test output.
     *  `add_comments` defines when to programatically add comments based on the test output. This depends on how you choose to score tests. 
-7. Upload the ```upload_tests.py``` file in the jupyerhub grader folder
-    * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost
+7. Upload the ```upload_tests.py``` file in the jupyerhub grader folder.
+    * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost.
 
 ### During Grading:
 When each student's file is being graded:
@@ -30,8 +30,8 @@ import os
 test_output = [ok.grade(q[:-3]) for q in os.listdir('tests') if q.startswith('q')]
 %run -i ../upload_tests.py <student_email> <assignment_name>
 ```
-2. Run the final cell, which will run the ```upload_tests.py``` script, pushing the test output to codePost .
-3. Visit the URL printed out in the notebook to navigate to the uploaded submission. Assign yourself as the grader, add additional feedback, and click 'Finalize'
+2. Run the final cell, which will run the ```upload_tests.py``` script, pushing the test output to codePost.
+3. Visit the URL printed out in the notebook to navigate to the uploaded submission. Assign yourself as the grader, add additional feedback, and click 'Finalize'.
   
 ============================================================================
 
@@ -40,14 +40,14 @@ test_output = [ok.grade(q[:-3]) for q in os.listdir('tests') if q.startswith('q'
 1. Changing `grade_calc` to `get_grade_snippet()`  
 `get_grade_snippet` adds three lines to the final cell of a student's notebook to:  
   
-   * Store the autograder output into a variable ```test_output```  
+   * Store the autograder output into a variable ```test_output```.
    * Run the ```upload_tests.py``` script from the JupyterHub directory . 
     
-   In order to call get_grade_snippet, we need the `student_email`. This is captured as `student_email=file.split('_')[0]`, assuming file naming convention of `<student_email>_<assignment_name>.ipynb`
+   In order to call get_grade_snippet, we need the `student_email`. This is captured as `student_email=file.split('_')[0]`, assuming file naming convention of `<student_email>_<assignment_name>.ipynb`.
 
-2. Upload `input_dir` (the submitted student notebooks) to codePost
+2. Upload `input_dir` (the submitted student notebooks) to codePost.
   
-   * The correct assignment object is retrieved via ```codePost.get_assignment_info_by_name```
+   * The correct assignment object is retrieved via ```codePost.get_assignment_info_by_name```.
    * ```upload_notebooks(<input_dir>, assignment)``` bulk uploads all of the `input_dir` files to codePost. Once again, the file naming convention of ```<student_email>_<assignment_name>.ipynb``` is assumed. 
 
 ### upload_tests.py
@@ -74,9 +74,9 @@ The syntax of post_comment is ```post_comment(api_key, file, text, pointDelta, s
 3. ```upload_test_output(api_key, course_name, course_period, student_email, assignment_name, test_output)``` 
 
 This is the main function, which:
-* (a) Given a ```course_name```, ```course_period```, ```assignment_name```, and ```student_email```, finds the student's submission
-* (b) Posts a new file ```new_file``` to that student's submission with the contents of ```parse_test_output(test_output)```
-* (c) Calls ```add_comments(api_key, test_output, new_file``` to add comments to ```new_file```
+* (a) Given a ```course_name```, ```course_period```, ```assignment_name```, and ```student_email```, finds the student's submission.
+* (b) Posts a new file ```new_file``` to that student's submission with the contents of ```parse_test_output(test_output)```.
+* (c) Calls ```add_comments(api_key, test_output, new_file``` to add comments to ```new_file```.
 
 
 ### A few notes on ```upload_tests.py```
