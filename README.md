@@ -29,13 +29,13 @@ import os
 
 ## Explanation of changes:
 ### preprocess-add-grade.py
-1. Changing grade_calc to get_grade_snippet
-Get_grade_snippet adds three lines to the final cell to: 
+1. Changing `grade_calc` to `get_grade_snippet()`  
+`get_grade_snippet` adds three lines to the final cell to: 
     * Store the autograder output into a variable ```test_output``` 
     * Run the ```upload_tests.py``` script from the JupyterHub directory
-In order to call get_grade_snippet, we need the student_email. This is captured as ```student_email=file.split('_')[0]```, assuming a file naming convention of ```<student_email>_<assignment_name>.ipynb```
+In order to call get_grade_snippet, we need the `student_email`. This is captured as ```student_email=file.split('_')[0]```, assuming a file naming convention of ```<student_email>_<assignment_name>.ipynb```
 
-2. Uploading the files in input_dir (the original student notebooks) to codePost, independent of flattening
+2. Uploading the files in input_dir (the original student notebooks) to codePost, independent of flattening  
 The correct assignment object from codePost is retrieved via ```codePost.get_assignment_info_by_name```
 ```upload_notebooks(<input_dir>, assignment)``` is called to bulk upload all of the input_dir files to codePost. Once again, the file naming convention of ```<student_email>_<assignment_name>.ipynb``` is assumed. 
 
