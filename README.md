@@ -7,7 +7,7 @@ Script for ucsb int 5 upload
 1. Set env variable in JupyterHub ```cp_api_key="API_KEY"```. Your API key can be found on www.codepost.io/settings. 
 2. Add your API-key to a local version of ```preprocess-add-grade.py``` (or alternative key entry method)
     * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost
-3. After students have submitted, run ```preprocess-add-grade.py <input_dir> <output_dir> <codePost assignment name>```
+3. After students have submitted, run ```python3 preprocess-add-grade.py <input_dir> <output_dir> <codePost assignment name>```
     This will:
       * Add in codePost test upload code to the final cell in the ```output_dir``` files
       * Upload the ```input_dir``` files to codePost. ```input_dir``` files must be named `<student_email>_<assignment_name>.ipynb`. If this changes, change the code appropriately. 
