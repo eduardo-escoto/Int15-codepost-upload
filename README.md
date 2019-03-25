@@ -4,7 +4,7 @@ Script for ucsb int 5 upload
 ## Process:
 ### One time -- done for all students:
 0. `pip3 install codePost` in local environment. Also install `python3` if needed
-1. Add your API-key to a local version of ```preprocess-add-grade.py```. Your API key can be found on www.codepost.io/settings.  
+1. Add your API-key to a local version of ```preprocess-add-grade.py```. Your API key can be found on www.codepost.io/settings. This key is unique to you and can be reset at any time.  
     * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost
 2. After students have submitted, run ```python3 preprocess-add-grade.py <input_dir> <output_dir> <codePost assignment name>```
     This will:
