@@ -1,6 +1,8 @@
 # ucsb-codePost-upload
 Script for ucsb int 5 upload
 
+See walkthrough video here: https://www.useloom.com/share/f3affbdbdefe4188a4edb0e45620da32
+
 ## Process:
 ### One time -- done for all students:
 0. `pip3 install codePost` in local environment. Also install `python3` if not already installed. The codePost package is only compatible with python3. 
