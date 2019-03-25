@@ -12,10 +12,10 @@ Script for ucsb int 5 upload
       * Upload the ```input_dir``` files to codePost. ```input_dir``` files must be named `<student_email>_<assignment_name>.ipynb`. If this changes, change the code appropriately. 
 3. Upload `output_dir` to the JupyterHub grader repository (same as current process)
 4. `pip3 install codePost` in JupyerHub grader environment
-5. Set env variable in JupyterHub ```cp_api_key="API_KEY"```. This can be done by either:  
+5. Set env variable in JupyterHub ```cp_api_key="API_KEY"``` using the same API key from step 0 above. This can be done by either:  
     * Open up JupyerHub terminal environment and `export cp_api_key=<API_KEY>`
     * Create a Jupyer notebook in directory and run `%env cp_api_key=<API_KEY>`
-    * **Make sure that this variable is not accessible from the student directory on JupyterHub**
+    * **Make sure that this variable is not accessible from the student directory on JupyterHub.** Anyone with access to your API key can access and modify all course data, so you should restrict access to it.
 6. Modify `parse_test_output` and `add_comments` functions in `upload_tests.py` to your desired behavior:
     * `parse_test_output` defines what amount of test output is uploaded to codePost and exposed to students. By default it returns the full test output.
     *  `add_comments` defines when to programatically add comments based on the test output. This depends on how you choose to score tests. 
