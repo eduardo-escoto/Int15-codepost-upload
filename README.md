@@ -25,7 +25,8 @@ import os
 <variable_name> = [ok.grade(q[:-3]) for q in os.listdir('tests') if q.startswith('q')]
 %run upload_tests.py <student_email> <assignment_name> <variable_name>
 ```
-2. Run the final cell, which will run the ```upload_tests.py``` script, pushing the test output to codePost . 
+2. Run the final cell, which will run the ```upload_tests.py``` script, pushing the test output to codePost .
+3. Visit the URL printed out in the notebook to navigate to the uploaded submission. Assign yourself as the grader, add additional feedback, and click 'Finalize'
   
 ============================================================================
 
