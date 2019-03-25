@@ -5,15 +5,15 @@ Script for ucsb int 5 upload
 ### One time -- done for all students:
 1. Set env variable in JupyterHub ```cp_api_key="API_KEY"```. Your API key can be found on www.codepost.io/settings. 
 2. Put the ```upload_tests.py``` file in the jupyerhub grader repository
-  * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost
+    * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost
 3. Add your API-key to a local version of ```testing.py``` (or alternative key entry method)
- * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost
+    * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost
 4. Run ```testing.py <input_dir> <output_dir> <codePost assignment name>```
-  * This will (1) add in test upload code to the ```output_dir``` files (2) upload the ```input_dir``` files to codePost
-  * For (2) to happen, ```input_dir``` files must be named ```<student_email>_<assignment_name>.ipynb```. If this changes, change the code appropriately. 
+    * This will (1) add in test upload code to the ```output_dir``` files (2) upload the ```input_dir``` files to codePost
+    * For (2) to happen, ```input_dir``` files must be named ```<student_email>_<assignment_name>.ipynb```. If this changes, change the code appropriately. 
 5. Modify `parse_test_output` and `add_comments` functions in `upload_tests.py` to your desired behavior:
-  * `parse_test_output` defines what amount of test output is uploaded to codePost and exposed to students. By default it is the full test output
-  *  `add_comments` defines when to programatically add comments based on the test output. This depends on how you choose to score tests. 
+    * `parse_test_output` defines what amount of test output is uploaded to codePost and exposed to students. By default it is the full test output
+    *  `add_comments` defines when to programatically add comments based on the test output. This depends on how you choose to score tests. 
 
 ### During Grading:
 When each student's file is being graded:
