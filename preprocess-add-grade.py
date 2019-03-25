@@ -5,7 +5,7 @@ import sys
 # install by 'pip install codePost'. Documentation can be found at https://github.com/codepost-io/codePost-python
 import codePost
 
-api_key = "API - Key" # set API key via %env cp_api_key = <API KEY>
+api_key = "7c45c158e4fd1520f6cda0d7d3b8c426c5aa9c15" # set API key via %env cp_api_key = <API KEY>
 course_name = 'New course'
 course_period = '2019'
 
@@ -32,7 +32,6 @@ def flatten(input_dir, output_dir, assignment_name):
             student_email=file.split('_')[0]
             for line in oldF:
 #newF.write(line.replace('_ = ok.auth(inline=True)', '#_ = ok.auth(inline=True)').replace("_ = ok.submit()", "#_ = ok.submit()").replace("4 = 2 + 2", "# 4 = 2 + 2").replace("six = two plus two", "# six = two plus two" ))
-                print(get_grade_snippet(student_email, assignment_name))
                 newF.write(line.replace("##_ = ok.submit()", get_grade_snippet(student_email, assignment_name)).replace("\"\"", "\""))
             oldF.close()
             newF.close()
