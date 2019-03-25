@@ -7,13 +7,14 @@ Script for ucsb int 5 upload
 2. Add your API-key to a local version of ```preprocess-add-grade.py``` (or alternative key entry method)
     * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost
 3. After students have submitted, run ```preprocess-add-grade.py <input_dir> <output_dir> <codePost assignment name>```
-    * This will (1) add in test upload code to the ```output_dir``` files (2) upload the ```input_dir``` files to codePost
-    * For (2) to happen, ```input_dir``` files must be named ```<student_email>_<assignment_name>.ipynb```. If this changes, change the code appropriately. 
+    This will:
+      * Add in codePost test upload code to the final cell in the ```output_dir``` files
+      * Upload the ```input_dir``` files to codePost. ```input_dir``` files must be named `<student_email>_<assignment_name>.ipynb`. If this changes, change the code appropriately. 
 4. Upload `output_dir` to the JupyterHub grader repository (same as current process)
 5. Modify `parse_test_output` and `add_comments` functions in `upload_tests.py` to your desired behavior:
     * `parse_test_output` defines what amount of test output is uploaded to codePost and exposed to students. By default it returns the full test output.
     *  `add_comments` defines when to programatically add comments based on the test output. This depends on how you choose to score tests. 
-6. Put the ```upload_tests.py``` file in the jupyerhub grader folder
+6. Upload the ```upload_tests.py``` file in the jupyerhub grader folder
     * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost
 
 ### During Grading:
