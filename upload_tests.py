@@ -44,10 +44,14 @@ def add_comments(api_key, test_output, file):
     Adds comments to a codePost file, given an API Key, output to parse for comments, and a file object
     NOTE: THIS FUNCTION SHOULD BE EDITED BASED ON DESIRED USER BEHAVIOR
     """
-    # example: posts a single comment
+    # example: posts a comment for each failed test
     # syntax: post_comment(api_key, file, text, pointDelta, startChar, endChar, startLine, endLine, rubricComment=None)
-    # pointDelta is parsed as a negative. e.g., a pointDelta of 1 is -1 on codePost
-    codePost.post_comment(api_key, file, "Final grade", 10, 0, 1, 0, 0)
+    # pointDelta is parsed as a negative. e.g., a pointDelta of 1 is -1 on codePost'
+    test_by_q = test_output.split("Question")
+    for i in test_by_q:
+        if (i.includes("k..")): #indicator that a single test failed
+            comment_text = "{question} has a failed test. [Autograder output]".format(question=i[:3])
+            codePost.post_comment(api_key, file, i[:3], 1, 0, 1, 0, 0)
 
 if __name__ == "__main__":
     upload_test_output(api_key, course_name, course_period, student_email, assignment_name, test_output)
