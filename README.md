@@ -3,19 +3,19 @@ Script for ucsb int 5 upload
 
 ## Process:
 ### One time -- done for all students:
-0. `pip3 install codePost` in local environment. Also install `python3` if needed
+0. `pip3 install codePost` in local environment. Also install `python3` if needed.
 1. Add your API-key to a local version of ```preprocess-add-grade.py```. Your API key can be found at www.codepost.io/settings. This key is unique to you and can be reset at any time.  
-    * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost
+    * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost.
 2. After students have submitted, run ```python3 preprocess-add-grade.py <input_dir> <output_dir> <codePost assignment name>```
     This will:
-      * Add in codePost test upload code to the final cell in the ```output_dir``` files
-      * Upload the ```input_dir``` files to codePost. ```input_dir``` files must be named `<student_email>_<assignment_name>.ipynb`. If this changes, change the code appropriately. 
-3. Upload `output_dir` to the JupyterHub grader repository (same as current process)
+      * Add in codePost test upload code to the final cell in the ```output_dir``` files.
+      * Upload the ```input_dir``` files to codePost. ```input_dir``` files must be named. `<student_email>_<assignment_name>.ipynb`. If this changes, change the code appropriately. 
+3. Upload `output_dir` to the JupyterHub grader repository (same as current process).
 4. `pip3 install codePost` in JupyerHub grader environment
 5. Set env variable in JupyterHub ```cp_api_key="API_KEY"``` using the same API key from step 0 above. This can be done by either:  
-    * Open up JupyerHub terminal environment and `export cp_api_key=<API_KEY>`
-    * Create a Jupyer notebook in directory and run `%env cp_api_key=<API_KEY>`
-    * **Make sure that this variable is not accessible from the student directory on JupyterHub.** Anyone with access to your API key can access and modify all course data, so you should restrict access to it.
+    * Open up JupyerHub terminal environment and `export cp_api_key=<API_KEY>`.
+    * Create a Jupyer notebook in directory and run `%env cp_api_key=<API_KEY>`.
+    * **Make sure that this variable is not accessible from the student directory on JupyterHub.** Anyone with access to your API key can access and modify all course data, so you should restrict access to it. If you suspect your API key has been compromised, you can reset it (and invalidate the old one) at www.codepost.io/settings. 
 6. Modify `parse_test_output` and `add_comments` functions in `upload_tests.py` to your desired behavior:
     * `parse_test_output` defines what amount of test output is uploaded to codePost and exposed to students. By default it returns the full test output.
     *  `add_comments` defines when to programatically add comments based on the test output. This depends on how you choose to score tests. 
