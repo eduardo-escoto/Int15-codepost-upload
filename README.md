@@ -12,7 +12,7 @@ Script for ucsb int 5 upload
     * This will (1) add in test upload code to the ```output_dir``` files (2) upload the ```input_dir``` files to codePost
     * For (2) to happen, ```input_dir``` files must be named ```<student_email>_<assignment_name>.ipynb```. If this changes, change the code appropriately. 
 5. Modify `parse_test_output` and `add_comments` functions in `upload_tests.py` to your desired behavior:
-    * `parse_test_output` defines what amount of test output is uploaded to codePost and exposed to students. By default it is the full test output
+    * `parse_test_output` defines what amount of test output is uploaded to codePost and exposed to students. By default it returns the full test output.
     *  `add_comments` defines when to programatically add comments based on the test output. This depends on how you choose to score tests. 
 
 ### During Grading:
