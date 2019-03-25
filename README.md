@@ -74,9 +74,9 @@ The syntax of post_comment is ```post_comment(api_key, file, text, pointDelta, s
 3. ```upload_test_output(api_key, course_name, course_period, student_email, assignment_name, test_output)``` 
 
 This is the main function, which:
-  a. Given a ```course_name```, ```course_period```, ```assignment_name```, and ```student_email```, finds the student's submission
-  b. Posts a new file ```new_file``` to that student's submission with the contents of ```parse_test_output(test_output)```
-  c. Calls ```add_comments(api_key, test_output, new_file``` to add comments to ```new_file```
+* (a) Given a ```course_name```, ```course_period```, ```assignment_name```, and ```student_email```, finds the student's submission
+* (b) Posts a new file ```new_file``` to that student's submission with the contents of ```parse_test_output(test_output)```
+* (c) Calls ```add_comments(api_key, test_output, new_file``` to add comments to ```new_file```
 
 
 ### A few notes on ```upload_tests.py```
