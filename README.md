@@ -3,38 +3,34 @@ Script for ucsb int 5 upload
 
 ## Process:
 ### One time -- done for all students:
-1. Set env variable in JupyterHub cp_api_key="API_KEY". API key can be found on www.codepost.io/settings
-2. Put the upload_tests.py file in the jupyerhub grader repository
+1. Set env variable in JupyterHub ```cp_api_key="API_KEY"```. Your API key can be found on www.codepost.io/settings. 
+2. Put the ```upload_tests.py``` file in the jupyerhub grader repository
   * Make sure that the course and course_period variables are appropriately set in the file
-3. Locally, add API-key to testing.py, and make sure course and course_period variables are correct
-4. Run
-```
-testing.py <input_dir> <output_dir> <codePost assignment name>
-```
-  * This will (1) add in the test_output code to the output_dir files (2) upload the input_dir files to codePost
-  * For (2) to happen, input_dir files must be named <student_email>_<assignment_name>.ipynb. If this changes, change the code appropriately. 
+3. Locally, add API-key to ```testing.py```, and make sure ```course_name``` and ```course_period``` variables are correct
+4. Run ```testing.py <input_dir> <output_dir> <codePost assignment name>```
+  * This will (1) add in test upload code to the ```output_dir``` files (2) upload the ```input_dir``` files to codePost
+  * For (2) to happen, ```input_dir``` files must be named ```<student_email>_<assignment_name>.ipynb```. If this changes, change the code appropriately. 
 
 ### During Grading:
 When each student's file is being graded:
-1. Ensure that the final cell has the following format. It should already be included from the pre-processing.
+1. Ensure that the final cell has the following lines of code. It should already be included from the pre-processing.
 ```
 import os
 <variable_name> = [ok.grade(q[:-3]) for q in os.listdir('tests') if q.startswith('q')]
 %run upload_tests.py <student_email> <assignment_name> <variable_name>
 ```
-2. Run the final cell, which will run the upload_tests.py script, pushing the test output to codePost
+2. Run the final cell, which will run the ```upload_tests.py``` script, pushing the test output to codePost
 
-## Explanation:
+
+
+
+
+## Explanation of changes:
 ### preprocess-add-grade.py
-1. Changing grade_calc to get_grade_snippet: get_grade_snippet adds three lines to the final cell to: 
+1. Changing grade_calc to get_grade_snippet
+Get_grade_snippet adds three lines to the final cell to: 
     * Store the autograder output into a variable ```test_output``` 
-    * Run the ```upload_tests.py``` script from the JupyterHub directory with 3 arguments: ```student_email``` the student, ```assignment_name``` the assignment, ```test_output``` the autograder output. 
-```
-def get_grade_snippet(student_email, assignment_name):
-  return '''"import os\\n",
-    "test_output = [ok.grade(q[:-3]) for q in os.listdir('tests') if q.startswith('q')]\\n",
-    "%run upload_tests.py {student_email} {assignment_name} test_output"'''.format(student_email=student_email, assignment_name=assignment_name)
-```
+    * Run the ```upload_tests.py``` script from the JupyterHub directory
 In order to call get_grade_snippet, we need the student_email. This is captured as ```student_email=file.split('_')[0]```, assuming a file naming convention of ```<student_email>_<assignment_name>.ipynb```
 
 2. Uploading the files in input_dir (the original student notebooks) to codePost, independent of flattening
@@ -43,12 +39,15 @@ The correct assignment object from codePost is retrieved via ```codePost.get_ass
 
 ### upload_tests.py
 This python script is run in each students' jupyter notebook upon grading. It contains three functions:
-1. ```parse_test_output(test_output)```: This function returns the test output content to be uploaded to codePost. **THIS FUNCTION SHOULD BE MODIFIED BY USER FOR DESIRED BEHAVIOR.** For example, if we wanted to expose the full test_output to students, this function would read:
+1. ```parse_test_output(test_output)```
+This function returns the test output content to be uploaded to codePost. **THIS FUNCTION SHOULD BE MODIFIED BY USER FOR DESIRED BEHAVIOR.** For example, if we wanted to expose the full test_output to students, this function would read:
 ```
 def parse_test_output(test_output):
   return test_output
 ```
-2. ```add_comments(api_key, test_output, file)```: This function adds comments to a file after the file has been uploaded to codePost. **THIS FUNCTION SHOULD BE MODIFIED BY USER FOR DESIRED BEHAVIOR.** For example, if we wanted to add a single comment to the top of the file, saying "Good Job! You get an extra point!" with a point value of +1, this function would read:
+
+2. ```add_comments(api_key, test_output, file)```
+This function adds comments to a file after the file has been uploaded to codePost. **THIS FUNCTION SHOULD BE MODIFIED BY USER FOR DESIRED BEHAVIOR.** For example, if we wanted to add a single comment to the top of the file, saying "Good Job! You get an extra point!" with a point value of +1, this function would read:
 ```
 def add_comments(api_key, test_output, file):
   codePost.post_comment(api_key, file, "Good Job! You get an extra point!", -1, 0, 1, 0, 0)
