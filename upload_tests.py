@@ -9,7 +9,6 @@ course_name = 'New course'
 course_period = '2019'
 student_email = sys.argv[1]
 assignment_name = sys.argv[2]
-# test_output = sys.argv[3]
 
 test_output_file_name = "test_output1.txt" # NOTE: THIS SHOULD BE EDITED BY USER BASED ON DESIRED BEHAVIOR. File name for codePost
 
@@ -52,8 +51,8 @@ def add_comments(api_key, test_output, file):
     for i in test_by_q:
         if ("k.." in i): #indicator that a single test failed
             comment_text = "Question {question} has a failed test. [Autograder output]".format(question=i[:4])
-            codePost.post_comment(api_key, file, comment_text, 1, 0, 1, line_counter, line_counter)
-        line_counter+= len(i.split("\n"))
+            codePost.post_comment(api_key, file, comment_text, 1, 0, 10, line_counter, line_counter)
+        line_counter+= len(i.split("\n"))-1
 
 if __name__ == "__main__":
     upload_test_output(api_key, course_name, course_period, student_email, assignment_name, test_output)
