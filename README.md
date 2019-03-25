@@ -3,6 +3,7 @@ Script for ucsb int 5 upload
 
 ## Process:
 ### One time -- done for all students:
+0. `pip install codePost` both locally and in the JupyterHub grader environment
 1. Set env variable in JupyterHub ```cp_api_key="API_KEY"```. Your API key can be found on www.codepost.io/settings. 
 2. Add your API-key to a local version of ```preprocess-add-grade.py``` (or alternative key entry method)
     * Make sure that the `course_name` and `course_period` variables are the same as your course in codePost
