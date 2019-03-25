@@ -24,11 +24,11 @@ Script for ucsb int 5 upload
 
 ### During Grading:
 When each student's file is being graded:
-1. Ensure that the final cell has the following lines of code. It should already be included from the pre-processing.
+1. Ensure that the final cell has the following lines of code. It should already be included from the pre-processing. If you rename `test_output` to a different variable, make sure you rename the variable used in `upload_tests.py`. They share the same namespace.
 ```
 import os
-<variable_name> = [ok.grade(q[:-3]) for q in os.listdir('tests') if q.startswith('q')]
-%run upload_tests.py <student_email> <assignment_name> <variable_name>
+test_output = [ok.grade(q[:-3]) for q in os.listdir('tests') if q.startswith('q')]
+%run -i ../upload_tests.py <student_email> <assignment_name>
 ```
 2. Run the final cell, which will run the ```upload_tests.py``` script, pushing the test output to codePost .
 3. Visit the URL printed out in the notebook to navigate to the uploaded submission. Assign yourself as the grader, add additional feedback, and click 'Finalize'
