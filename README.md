@@ -1,7 +1,7 @@
 # ucsb-codePost-upload
 Script for ucsb int 5 upload
 
-See walkthrough video here: https://www.useloom.com/share/f3affbdbdefe4188a4edb0e45620da32
+See walkthrough video here: https://www.useloom.com/share/f3affbdbdefe4188a4edb0e45620da32. Note: 'pip install codePost' (in the video) has been changed to 'pip install codePost-api'. Please use 'pip install codePost-api'
 
 ## Process:
 ### One time -- done for all students:
