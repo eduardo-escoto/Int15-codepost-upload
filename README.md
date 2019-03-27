@@ -5,7 +5,7 @@ See walkthrough video here: https://www.useloom.com/share/f3affbdbdefe4188a4edb0
 
 ## Process:
 ### One time -- done for all students:
-0. `pip3 install codePost-api` in local environment. Also install `python3` if not already installed. The codePost package is only compatible with python3.
+0. `pip install codePost-api` in local environment. Also install `python3` if not already installed. The codePost package is only compatible with python3.
 1. There are three variables that need to be modified in `preprocess-add-grade.py`:
     * API-key: Add your API-key to a local version of ```preprocess-add-grade.py```. Your API key can be found at www.codepost.io/settings. This key is unique to you and can be reset at any time.
     * `course_name`: This should be the same as the course name in codePost
@@ -15,7 +15,7 @@ See walkthrough video here: https://www.useloom.com/share/f3affbdbdefe4188a4edb0
       * Add in codePost test upload code to the final cell in the ```output_dir``` files.
       * Upload the ```input_dir``` files to codePost. ```input_dir``` files must be named `<student_email>_<assignment_name>.ipynb`. If this changes, change the code appropriately.
 3. Upload `output_dir` to the JupyterHub grader repository (same as current process).
-4. `pip3 install codePost-api` in JupyerHub grader environment,
+4. `pip install codePost-api` in JupyerHub grader environment,
 5. Set env variable in JupyterHub ```cp_api_key="API_KEY"``` using the same API key from step 0 above. This can be done by either:
     * Open up JupyerHub terminal environment and `export cp_api_key=<API_KEY>`.
     * Create a Jupyer notebook in directory and run `%env cp_api_key=<API_KEY>`.
