@@ -3,7 +3,7 @@
 import os
 import sys
 # install by 'pip install codePost'. Documentation can be found at https://github.com/codepost-io/codePost-python
-import codepost_api as codePost
+import codePost_api as codePost
 
 api_key = "<API - KEY>" # set API key via %env cp_api_key = <API KEY>
 course_name = 'New course'
