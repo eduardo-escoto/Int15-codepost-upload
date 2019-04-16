@@ -47,7 +47,7 @@ def add_comments(api_key, test_output, file):
     # syntax: post_comment(api_key, file, text, pointDelta, startChar, endChar, startLine, endLine, rubricComment=None)
     # pointDelta is parsed as a negative. e.g., a pointDelta of 1 is -1 on codePost'
     test_by_q = test_output.split("Question")
-    line_counter = 0;
+    line_counter = 0
     for i in test_by_q:
         if ("k.." in i): #indicator that a single test failed
             comment_text = "Question {question} has a failed test. [Autograder output]".format(question=i[:4])
@@ -55,4 +55,10 @@ def add_comments(api_key, test_output, file):
         line_counter+= len(i.split("\n"))-1
 
 if __name__ == "__main__":
+    # print(api_key)
+    # print(course_name)
+    # print(course_period)
+    # print(student_email)
+    # print(assignment_name)
+    # print(test_output)
     upload_test_output(api_key, course_name, course_period, student_email, assignment_name, test_output)
