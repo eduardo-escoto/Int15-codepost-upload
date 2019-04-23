@@ -11,7 +11,7 @@ test = {
           >>> 1 <= names_q2 <= 4
           True
           """,
-          'hidden': False,
+          'hidden': True,
           'locked': False
         }
       ],
