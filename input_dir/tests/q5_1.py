@@ -9,7 +9,7 @@ test = {
           >>> isinstance(dissimilarity, (int, float))
           True
           """,
-          'hidden': False,
+          'hidden': True,
           'locked': False
         }
       ],

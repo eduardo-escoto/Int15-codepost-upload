@@ -9,7 +9,7 @@ test = {
           >>> 1 <= characters_q1 <= 5
           True
           """,
-          'hidden': False,
+          'hidden': True,
           'locked': False
         }
       ],

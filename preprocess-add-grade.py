@@ -67,14 +67,13 @@ def createIPYNBCell(cell_type_str, source_str_list, metadata_dict={}, output_lis
 
 
 def getUploadTestSnippet(student_email, assignment_name):
-    """ Creates the snippet to run the okpy grader and then submit output to codepost
-    """
+    """ Creates the snippet to run the okpy grader and then submit output to codepost """
 
     return [
         "import os\n",
         "import io\n",
         "from contextlib import redirect_stdout\n",
-        "%env cp_api_key = c0f0e3594c99b2e58a46cf3fc97538385c28eae0\n",
+        "%env cp_api_key = {api}\n".format(api = api_key),
         "f = io.StringIO()\n",
         "with redirect_stdout(f):\n",
         "    [ok.grade(q[:-3]) for q in os.listdir('tests') if q.startswith('q')]\n",
@@ -85,8 +84,7 @@ def getUploadTestSnippet(student_email, assignment_name):
 
 
 def addCodePostSubmitCell(notebook_data, student_email, assignment_name):
-    """ Adds a cell containing the autograder snippet
-    """
+    """ Adds a cell containing the autograder snippet """
 
     codepost_snippet = getUploadTestSnippet(student_email, assignment_name)
     codepost_snippet_json = createIPYNBCell("code", codepost_snippet)
@@ -103,7 +101,7 @@ def commentOKPYSubmit(notebook_data, mode="comment"):
         for index, line in enumerate(source):
             if("ok.submit" in line):
                 if mode == "comment":
-                    source[index] = "#" + line
+                    source[index] = "# Removed by AutoGrader" + line
                 elif mode == "delete":
                     del source[index]
 
@@ -112,7 +110,7 @@ def commentOKPYSubmit(notebook_data, mode="comment"):
 
 def processNotebook(notebook_path, student_email, assignment_name, ok_line_mode="comment"):
     """ Processes the notebook to comment/delete okpy lines, and adds cell containing the 
-    autograder snippet
+    autograder snippet 
     """
     with open(notebook_path, 'r') as json_file:
         notebook_data = json.load(json_file)
@@ -125,20 +123,18 @@ def processNotebook(notebook_path, student_email, assignment_name, ok_line_mode=
 
 
 def saveNotebook(notebook_data, path):
-    """ Saves the notebook to path
-    """
+    """ Saves the notebook to path """
     with open(path, 'w') as out_file:
         json.dump(notebook_data, out_file, indent=2)
 
 
 def copyTestsFolder(input_dir, output_dir, assignment_name):
-    """ Copies tests to output dir
-    """
+    """ Copies tests to output dir """
     ok_file_name = assignment_name + '.ok'
-    
+
     if os.path.exists(output_dir + "/tests"):
         rmtree(output_dir + "/tests")
-    
+
     copytree(input_dir + "/tests", output_dir + "/tests")
     copyfile(input_dir + '/' + ok_file_name, output_dir + '/' + ok_file_name)
 
@@ -177,8 +173,7 @@ def processAllNotebooks(input_dir, output_dir, assignment_name, ok_line_mode="co
 
 
 def uploadNotebooksToCodePost(input_dir, assignment):
-    """ Uploads notebooks to codepost
-    """
+    """ Uploads notebooks to codepost """
     for file in os.listdir(input_dir):
         if(file.endswith(".ipynb")):
             student_email = file.split('_')[0]
@@ -193,8 +188,7 @@ def uploadNotebooksToCodePost(input_dir, assignment):
 
 
 def getAssignmentData(assignment_name):
-    """ Get assignment for given assignemnt name
-    """
+    """ Get assignment for given assignemnt name """
     assignment = codePost.get_assignment_info_by_name(
         api_key, course_name, course_period, assignment_name)
     if(not assignment):
@@ -205,6 +199,7 @@ def getAssignmentData(assignment_name):
 
 
 def startProcess(input_dir, output_dir, assignment_name, ok_line_mode="comment"):
+    """ Runs all of the processing """
     assignment = getAssignmentData(assignment_name)
 
     processAllNotebooks(input_dir, output_dir,
@@ -215,12 +210,14 @@ def startProcess(input_dir, output_dir, assignment_name, ok_line_mode="comment")
 
 
 def checkSysArgs():
+    """ Checks to see if the right amount of parameters are passed by command line """
     if len(sys.argv) < 4:
         raise Exception(
             "There are missing parameters. The following are necessary Input Directory, Output Direcory, Assignment Name")
 
 
 if __name__ == "__main__":
+    """ If this is run from the command line it will automatically process the notebooks. """
     checkSysArgs()
     input_dir, output_dir, assignment_name, *rest = sys.argv[1:]
     startProcess(input_dir, output_dir, assignment_name)

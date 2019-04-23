@@ -13,7 +13,7 @@ test = {
           >>> 1 <= admissions_q3 <= 3
           True
           """,
-          'hidden': False,
+          'hidden': True,
           'locked': False
         }
       ],

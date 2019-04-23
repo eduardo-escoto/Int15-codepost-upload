@@ -11,7 +11,7 @@ test = {
           >>> 1 <= jobs_q2 <= 3
           True
           """,
-          'hidden': False,
+          'hidden': True,
           'locked': False
         }
       ],

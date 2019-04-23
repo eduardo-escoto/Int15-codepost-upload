@@ -11,6 +11,8 @@ __pycache__/
 # C extensions
 *.so
 
+*.old.md
+
 # Distribution / packaging
 .DS_Store
 .Python
@@ -130,5 +132,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+output_dir/
+
 # End of https://www.gitignore.io/api/python
-n
