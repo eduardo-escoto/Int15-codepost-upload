@@ -20,12 +20,26 @@
 
 4. Done! 🎊🎉 
 
-## Process
+## What this does
 
-This works by first processing all of the notebook files by:
+This works by first pre-processing all of the notebook files in \[input_dir\].
+
+### Pre-processing
 
 1. Commenting (or deleting) any lines that have `ok.submit()` to prevent resubmissions
 2. Appends a cell that runs the autograding script which then uploads it to codepost
-3. Executes the notebook, and the autograding cell
-4. Parses the test output and adds comments and deducts points for failed tests.
-5. Done! 🎊🎉 
+
+Then does the autograding and uploading
+
+### Autograding
+
+1. Executes the notebook, and the autograding cell
+2. Parses the test output and adds comments and deducts points for failed tests.
+
+After all the tests are uploaded, all that is left is managing the assignments from CodePost
+
+### Finalizing
+
+1. Manually finalize each submission, while also grading conceptual questions
+
+### Done! 🎊🎉 
