@@ -6,7 +6,7 @@ Importing Necessary Modules:
 
 copyfile:    Used to copy files to temp directory
 codePost:   Codepost api
-            Install by 'pip install codePost'. 
+            Install by 'pip install codePost'.
             Documentation can be found at https://github.com/codepost-io/codePost-python
 os:         For accessing folder structure
 sys:        For accessing command line args
@@ -68,18 +68,18 @@ def createIPYNBCell(cell_type_str, source_str_list, metadata_dict={}, output_lis
 
 def getUploadTestSnippet(student_email, assignment_name):
     """ Creates the snippet to run the okpy grader and then submit output to codepost """
-
+    test_script_path = os.path.abspath("upload_tests.py")
     return [
         "import os\n",
         "import io\n",
         "from contextlib import redirect_stdout\n",
-        "%env cp_api_key = {api}\n".format(api = api_key),
+        "%env cp_api_key = {api}\n".format(api=api_key),
         "f = io.StringIO()\n",
         "with redirect_stdout(f):\n",
         "    [ok.grade(q[:-3]) for q in os.listdir('tests') if q.startswith('q')]\n",
         "test_output = f.getvalue()\n",
-        "%run -i ../upload_tests.py {student_email} {assignment_name}".format(
-            student_email=student_email, assignment_name=assignment_name)
+        "%run -i {script_path} {student_email} {assignment_name}".format(script_path = test_script_path,
+            student_email=student_email, assignment_name=sys.argv[3])
     ]
 
 
@@ -94,7 +94,7 @@ def addCodePostSubmitCell(notebook_data, student_email, assignment_name):
 
 
 def commentOKPYSubmit(notebook_data, mode="comment"):
-    """ Comments out any lines that contain ok.submit() to prevent automatic resubmission for students 
+    """ Comments out any lines that contain ok.submit() to prevent automatic resubmission for students
     can change mode to 'delete' in order to remove the line instead"""
     for cell in notebook_data["cells"]:
         source = cell["source"]
@@ -109,8 +109,8 @@ def commentOKPYSubmit(notebook_data, mode="comment"):
 
 
 def processNotebook(notebook_path, student_email, assignment_name, ok_line_mode="comment"):
-    """ Processes the notebook to comment/delete okpy lines, and adds cell containing the 
-    autograder snippet 
+    """ Processes the notebook to comment/delete okpy lines, and adds cell containing the
+    autograder snippet
     """
     with open(notebook_path, 'r') as json_file:
         notebook_data = json.load(json_file)
@@ -128,46 +128,53 @@ def saveNotebook(notebook_data, path):
         json.dump(notebook_data, out_file, indent=2)
 
 
-def copyTestsFolder(input_dir, output_dir, assignment_name):
-    """ Copies tests to output dir """
-    ok_file_name = assignment_name + '.ok'
+def copyHomeworkFolder(input_dir, output_dir, assignment_name):
+    """ Copies tests and dependent folder to output dir """
 
-    if os.path.exists(output_dir + "/tests"):
-        rmtree(output_dir + "/tests")
-
-    copytree(input_dir + "/tests", output_dir + "/tests")
-    copyfile(input_dir + '/' + ok_file_name, output_dir + '/' + ok_file_name)
+    for root, directories, filenames in os.walk(input_dir):
+        for filename in filenames:
+            new_root = root.replace(input_dir, output_dir)
+            if not os.path.exists(new_root):
+                    os.mkdir(new_root)
+            if not filename.endswith(".ipynb"):
+                copyfile(os.path.join(root, filename), os.path.join(new_root, filename))
 
 
 def processAllNotebooks(input_dir, output_dir, assignment_name, ok_line_mode="comment"):
     """ Processes all notebooks in input directory for the assignment name
     and saves them to ouput directory
     """
-    temp_dir = output_dir + "_temp"
+    temp_dir=output_dir + "_temp"
 
-    if(not os.path.exists(output_dir)):
-        os.mkdir(output_dir)
+    if(os.path.exists(output_dir)):
+        rmtree(output_dir)
+    os.mkdir(output_dir)
 
-    if(not os.path.exists(temp_dir)):
-        os.mkdir(temp_dir)
+    if os.path.exists(temp_dir):
+        rmtree(temp_dir)
+    os.mkdir(temp_dir)
 
     for file in os.listdir(input_dir):
         if(file.endswith(".ipynb")):
-            print("Now Processing: " + file + " 🤔")
+            try:
+                print("Now Processing: " + file + " 🤔")
 
-            copyfile(input_dir+'/'+file, temp_dir+'/'+file)
+                temp_nb_file_path=temp_dir + '/' + file
+                final_nb_file_path=output_dir + '/' + file
+                student_email=file.split('_')[0]
+                assignment_name=file.split('_')[1]
 
-            temp_nb_file_path = temp_dir + '/' + file
-            final_nb_file_path = output_dir + '/' + file
-            student_email = file.split('_')[0]
+                copyfile(input_dir+'/'+file, temp_dir+'/'+file)
 
-            new_notebook_data = processNotebook(
-                temp_nb_file_path, student_email, assignment_name, ok_line_mode)
+                new_notebook_data=processNotebook(
+                    temp_nb_file_path, student_email, assignment_name, ok_line_mode)
 
-            saveNotebook(new_notebook_data, final_nb_file_path)
+                saveNotebook(new_notebook_data, final_nb_file_path)
 
-            os.remove(temp_dir+'/'+file)
-            print(file + " has been processed! 🎊")
+                os.remove(temp_dir+'/' + file)
+                print(file + " has been processed! 🎊")
+            except:
+                pass
 
     os.rmdir(output_dir + "_temp")
 
@@ -176,20 +183,23 @@ def uploadNotebooksToCodePost(input_dir, assignment):
     """ Uploads notebooks to codepost """
     for file in os.listdir(input_dir):
         if(file.endswith(".ipynb")):
-            student_email = file.split('_')[0]
-            new_file_name = file.split('_')[1]
-            file_to_upload = {"name": new_file_name, "code": open(
-                input_dir+'/'+file, 'r').read(), "extension": "ipynb"}
-            result = codePost.upload_submission(api_key, assignment, [student_email], [
-                                                file_to_upload], codePost.UploadModes.OVERWRITE)
-            if (result):
-                print("Successfully uploaded notebook for %s" %
-                      student_email + " 🎉 🎊")
+            try:
+                student_email=file.split('_')[0]
+                new_file_name=file.split('_')[1]
+                file_to_upload={"name": new_file_name, "code": open(
+                    input_dir+'/'+file, 'r').read(), "extension": "ipynb"}
+                result=codePost.upload_submission(api_key, assignment, [student_email], [
+                                                    file_to_upload], codePost.UploadModes.OVERWRITE)
+                if (result):
+                    print("Successfully uploaded notebook for %s" %
+                          student_email + " 🎉 🎊")
+            except:
+                pass
 
 
 def getAssignmentData(assignment_name):
     """ Get assignment for given assignemnt name """
-    assignment = codePost.get_assignment_info_by_name(
+    assignment=codePost.get_assignment_info_by_name(
         api_key, course_name, course_period, assignment_name)
     if(not assignment):
         raise Exception(
@@ -200,13 +210,13 @@ def getAssignmentData(assignment_name):
 
 def startProcess(input_dir, output_dir, assignment_name, ok_line_mode="comment"):
     """ Runs all of the processing """
-    assignment = getAssignmentData(assignment_name)
+    assignment=getAssignmentData(assignment_name)
 
     processAllNotebooks(input_dir, output_dir,
                         assignment["name"], ok_line_mode)
 
     uploadNotebooksToCodePost(input_dir, assignment)
-    copyTestsFolder(input_dir, output_dir, assignment_name)
+    copyHomeworkFolder(input_dir, output_dir, assignment_name)
 
 
 def checkSysArgs():
@@ -219,5 +229,5 @@ def checkSysArgs():
 if __name__ == "__main__":
     """ If this is run from the command line it will automatically process the notebooks. """
     checkSysArgs()
-    input_dir, output_dir, assignment_name, *rest = sys.argv[1:]
+    input_dir, output_dir, assignment_name, *rest=sys.argv[1:]
     startProcess(input_dir, output_dir, assignment_name)
