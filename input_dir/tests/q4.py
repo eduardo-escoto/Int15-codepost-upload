@@ -1,24 +1,15 @@
-test = {
-  'name': 'Question 4_',
-  'points': 1,
-  'suites': [
-    {
-      'cases': [
-        {
-          'code': r"""
-          >>> 1 <= jobs_q1 <= 3
-          True
-          >>> 1 <= jobs_q2 <= 3
-          True
-          """,
-          'hidden': True,
-          'locked': False
-        }
-      ],
-      'scored': True,
-      'setup': '',
-      'teardown': '',
-      'type': 'doctest'
-    }
-  ]
-}
+test = {   'name': 'q4',
+    'points': 2,
+    'suites': [   {   'cases': [   {   'code': '>>> len(midpoints)\n19',
+                                       'hidden': False,
+                                       'locked': False},
+                                   {   'code': '>>> all(np.array(midpoints) >= '
+                                               '0) & all(np.array(midpoints) '
+                                               '<= 1)\n'
+                                               'True',
+                                       'hidden': False,
+                                       'locked': False}],
+                      'scored': True,
+                      'setup': '',
+                      'teardown': '',
+                      'type': 'doctest'}]}

@@ -108,6 +108,34 @@ def commentOKPYSubmit(notebook_data, mode="comment"):
     return notebook_data
 
 
+def correctWrongTests(notebook_data):
+    correct_tests = ["ok.grade(\"q1\");", "ok.grade(\"q2\");", "ok.grade(\"q3\");", 
+                        "ok.grade(\"q4\");", "ok.grade(\"q6\");", "ok.grade(\"q8\");", "ok.grade(\"q9\");"]
+    print("** inside processNotebook **")
+    tests_locations= list()
+    print(len(notebook_data["cells"]))
+    for i in range(len(notebook_data["cells"])):
+        cell = notebook_data["cells"][i]
+        source = cell["source"]
+        for index, line in enumerate(source):
+            if("ok.grade" in line):
+                tests_locations.append((i, line))
+    print("==== tests found in the submission ==== ")
+    print(tests_locations)
+
+    for i, each in enumerate(tests_locations):
+        if i >= 4 and i < 7:
+            cell_index = each[0]
+            cell = notebook_data["cells"][cell_index]
+            print("before: ", cell["source"])
+            cell["source"][0] = correct_tests[i]
+            print("after: ", cell["source"])
+
+    print("** out of my code **")
+    return notebook_data
+
+
+
 def processNotebook(notebook_path, student_email, assignment_name, ok_line_mode="comment"):
     """ Processes the notebook to comment/delete okpy lines, and adds cell containing the
     autograder snippet
@@ -115,6 +143,7 @@ def processNotebook(notebook_path, student_email, assignment_name, ok_line_mode=
     with open(notebook_path, 'r') as json_file:
         notebook_data = json.load(json_file)
 
+    notebook_data = correctWrongTests(notebook_data)
     notebook_data = commentOKPYSubmit(notebook_data)
     notebook_data = addCodePostSubmitCell(
         notebook_data, student_email, assignment_name)
@@ -161,8 +190,11 @@ def processAllNotebooks(input_dir, output_dir, assignment_name, ok_line_mode="co
 
                 temp_nb_file_path=temp_dir + '/' + file
                 final_nb_file_path=output_dir + '/' + file
-                student_email=file.split('_')[0]
-                assignment_name=file.split('_')[1]
+                #student_email=file.split('_')[0]
+                #assignment_name=file.split('_')[1]
+                idx = file.rfind("_")
+                student_email=file[:idx]
+                assignment_name=file[idx+1:]
 
                 copyfile(input_dir+'/'+file, temp_dir+'/'+file)
 
@@ -184,8 +216,11 @@ def uploadNotebooksToCodePost(input_dir, assignment):
     for file in os.listdir(input_dir):
         if(file.endswith(".ipynb")):
             try:
-                student_email=file.split('_')[0]
-                new_file_name=file.split('_')[1]
+                #student_email=file.split('_')[0]
+                #new_file_name=file.split('_')[1]
+                idx = file.rfind("_")
+                student_email=file[:idx]
+                new_file_name=file[idx+1:]
                 file_to_upload={"name": new_file_name, "code": open(
                     input_dir+'/'+file, 'r').read(), "extension": "ipynb"}
                 result=codePost.upload_submission(api_key, assignment, [student_email], [
@@ -194,6 +229,7 @@ def uploadNotebooksToCodePost(input_dir, assignment):
                     print("Successfully uploaded notebook for %s" %
                           student_email + " 🎉 🎊")
             except:
+                print("Unsuccessfully uploaded notebook for file %s" % file)
                 pass
 
 
@@ -212,9 +248,7 @@ def startProcess(input_dir, output_dir, assignment_name, ok_line_mode="comment")
     """ Runs all of the processing """
     assignment=getAssignmentData(assignment_name)
 
-    processAllNotebooks(input_dir, output_dir,
-                        assignment["name"], ok_line_mode)
-
+    processAllNotebooks(input_dir, output_dir, assignment["name"], ok_line_mode)
     uploadNotebooksToCodePost(input_dir, assignment)
     copyHomeworkFolder(input_dir, output_dir, assignment_name)
 

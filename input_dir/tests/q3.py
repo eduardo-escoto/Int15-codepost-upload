@@ -1,24 +1,17 @@
-test = {
-  'name': 'Question 3_',
-  'points': 1,
-  'suites': [
-    {
-      'cases': [
-        {
-          'code': r"""
-          >>> 1 <= names_q1 <= 4
-          True
-          >>> 1 <= names_q2 <= 4
-          True
-          """,
-          'hidden': True,
-          'locked': False
-        }
-      ],
-      'scored': True,
-      'setup': '',
-      'teardown': '',
-      'type': 'doctest'
-    }
-  ]
-}
+test = {   'name': 'q3',
+    'points': 2,
+    'suites': [   {   'cases': [   {   'code': '>>> \n'
+                                               '>>> len(fraction_outcome)\n'
+                                               '19',
+                                       'hidden': False,
+                                       'locked': False},
+                                   {   'code': '>>> \n'
+                                               '>>> fraction_outcome[0] < '
+                                               'fraction_outcome[-1]\n'
+                                               'True',
+                                       'hidden': False,
+                                       'locked': False}],
+                      'scored': True,
+                      'setup': '',
+                      'teardown': '',
+                      'type': 'doctest'}]}

@@ -1,26 +1,12 @@
-test = {
-  'name': 'Question 2_',
-  'points': 1,
-  'suites': [
-    {
-      'cases': [
-        {
-          'code': r"""
-          >>> 1 <= admissions_q1 <= 5
-          True
-          >>> 1 <= admissions_q2 <= 3
-          True
-          >>> 1 <= admissions_q3 <= 3
-          True
-          """,
-          'hidden': True,
-          'locked': False
-        }
-      ],
-      'scored': True,
-      'setup': '',
-      'teardown': '',
-      'type': 'doctest'
-    }
-  ]
-}
+test = {   'name': 'q2',
+    'points': 2,
+    'suites': [   {   'cases': [   {   'code': '>>> \n'
+                                               '>>> '
+                                               "len(election_sub['bin'].dropna().unique())\n"
+                                               '19',
+                                       'hidden': False,
+                                       'locked': False}],
+                      'scored': True,
+                      'setup': '',
+                      'teardown': '',
+                      'type': 'doctest'}]}
