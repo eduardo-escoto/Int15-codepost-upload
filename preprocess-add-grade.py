@@ -112,25 +112,17 @@ def correctWrongTests(notebook_data):
     correct_tests = ["ok.grade(\"q1\");", "ok.grade(\"q2\");", "ok.grade(\"q3\");", 
                         "ok.grade(\"q4\");", "ok.grade(\"q6\");", "ok.grade(\"q8\");", "ok.grade(\"q9\");"]
     print("** inside processNotebook **")
-    tests_locations= list()
-    print(len(notebook_data["cells"]))
+    location = 0
     for i in range(len(notebook_data["cells"])):
         cell = notebook_data["cells"][i]
         source = cell["source"]
         for index, line in enumerate(source):
             if("ok.grade" in line):
-                tests_locations.append((i, line))
-    print("==== tests found in the submission ==== ")
-    print(tests_locations)
-
-    for i, each in enumerate(tests_locations):
-        if i >= 4 and i < 7:
-            cell_index = each[0]
-            cell = notebook_data["cells"][cell_index]
-            print("before: ", cell["source"])
-            cell["source"][0] = correct_tests[i]
-            print("after: ", cell["source"])
-
+                if location >= 4 and location < 7:
+                    print("before: ", cell["source"])
+                    cell["source"][0] = correct_tests[location]
+                    print("after: ", cell["source"])
+                location += 1
     print("** out of my code **")
     return notebook_data
 
