@@ -17,6 +17,7 @@
 
 3. Run `sh runGrading.sh input_dir output_dir assignment_name `
     - For example, to run the assignments in this repo run: `sh runGrading.sh input_dir output_dir hw01`
+[TODO]: run the script to capture its output into a log file, so that after the script is finished, we can search through the log to see if any noteboks have failed.
 
 4. Done! 🎊🎉 
 
@@ -50,3 +51,10 @@ After all the previous steps are finished, all that is left is managing the assi
 1. Manually finalize each submission, while also grading conceptual questions
 
 ### Done! 🎊🎉 
+
+
+
+
+## Troubleshooting
+
+* If a notebook fails during the execution, that notebook's processing is terminated and the script moves to the next notebook.
