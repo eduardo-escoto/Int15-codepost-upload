@@ -1,0 +1,20 @@
+test = {   'name': 'q6',
+    'points': 2,
+    'suites': [   {   'cases': [   {   'code': '>>> len(upper)\n19',
+                                       'hidden': False,
+                                       'locked': False},
+                                   {   'code': '>>> len(lower)\n19',
+                                       'hidden': False,
+                                       'locked': False},
+                                   {   'code': '>>> all(lower < upper)\nTrue',
+                                       'hidden': False,
+                                       'locked': False},
+                                   {   'code': '>>> (frac_covering > 0.5) & '
+                                               '(frac_covering < 1)\n'
+                                               'True',
+                                       'hidden': False,
+                                       'locked': False}],
+                      'scored': True,
+                      'setup': '',
+                      'teardown': '',
+                      'type': 'doctest'}]}

@@ -1,0 +1,11 @@
+codePost-api
+codePost-tools
+ipython
+jsonschema
+jupyter
+matplotlib
+numpy
+okpy
+pandas
+scipy
+seaborn

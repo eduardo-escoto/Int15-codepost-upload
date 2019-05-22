@@ -1,0 +1,130 @@
+[0m[[1mINFO[0m][0m Deleting file Output.txt, since it was not specified in the upload and deleteUnspecifiedFiles is True.
+[0m[[1mINFO[0m][0m Deleting file Output.txt, since it was not specified in the upload and deleteUnspecifiedFiles is True.
+[0m[[1mINFO[0m][0m Deleting file Output.txt, since it was not specified in the upload and deleteUnspecifiedFiles is True.
+[0m[[1mINFO[0m][0m Deleting file Output.txt, since it was not specified in the upload and deleteUnspecifiedFiles is True.
+[0m[[1mINFO[0m][0m Deleting file Output.txt, since it was not specified in the upload and deleteUnspecifiedFiles is True.
+[0m[[1mINFO[0m][0m Deleting file Output.txt, since it was not specified in the upload and deleteUnspecifiedFiles is True.
+Now Processing: h_lin@ucsb.edu_hw01.ipynb 🤔
+** inside processNotebook **
+before:  ['ok.grade("q5");']
+after:  ['ok.grade("q6");']
+before:  ['ok.grade("q5");']
+after:  ['ok.grade("q8");']
+before:  ['ok.grade("q6");']
+after:  ['ok.grade("q9");']
+** out of my code **
+h_lin@ucsb.edu_hw01.ipynb has been processed! 🎊
+Now Processing: amandaho@ucsb.edu_hw01.ipynb 🤔
+** inside processNotebook **
+before:  ['ok.grade("q6");']
+after:  ['ok.grade("q6");']
+before:  ['ok.grade("q8");']
+after:  ['ok.grade("q8");']
+before:  ['ok.grade("q9");']
+after:  ['ok.grade("q9");']
+** out of my code **
+amandaho@ucsb.edu_hw01.ipynb has been processed! 🎊
+Now Processing: andrew_hong@ucsb.edu_hw01.ipynb 🤔
+** inside processNotebook **
+before:  ['ok.grade("q5");']
+after:  ['ok.grade("q6");']
+before:  ['ok.grade("q5");']
+after:  ['ok.grade("q8");']
+before:  ['ok.grade("q6");']
+after:  ['ok.grade("q9");']
+** out of my code **
+andrew_hong@ucsb.edu_hw01.ipynb has been processed! 🎊
+Now Processing: aschoettler@ucsb.edu_hw01.ipynb 🤔
+** inside processNotebook **
+before:  ['ok.grade("q6");']
+after:  ['ok.grade("q6");']
+before:  ['ok.grade("q8");']
+after:  ['ok.grade("q8");']
+before:  ['ok.grade("q9");']
+after:  ['ok.grade("q9");']
+** out of my code **
+aschoettler@ucsb.edu_hw01.ipynb has been processed! 🎊
+Now Processing: alvinbui@ucsb.edu_hw01.ipynb 🤔
+** inside processNotebook **
+before:  ['ok.grade("q5");']
+after:  ['ok.grade("q6");']
+before:  ['ok.grade("q5");']
+after:  ['ok.grade("q8");']
+before:  ['ok.grade("q6");']
+after:  ['ok.grade("q9");']
+** out of my code **
+alvinbui@ucsb.edu_hw01.ipynb has been processed! 🎊
+Now Processing: chautran@ucsb.edu_hw01.ipynb 🤔
+** inside processNotebook **
+before:  ['ok.grade("q5");']
+after:  ['ok.grade("q6");']
+before:  ['ok.grade("q5");']
+after:  ['ok.grade("q8");']
+before:  ['ok.grade("q6");']
+after:  ['ok.grade("q9");']
+** out of my code **
+chautran@ucsb.edu_hw01.ipynb has been processed! 🎊
+Successfully uploaded notebook for h_lin@ucsb.edu 🎉 🎊
+Successfully uploaded notebook for amandaho@ucsb.edu 🎉 🎊
+Successfully uploaded notebook for andrew_hong@ucsb.edu 🎉 🎊
+Successfully uploaded notebook for aschoettler@ucsb.edu 🎉 🎊
+Successfully uploaded notebook for alvinbui@ucsb.edu 🎉 🎊
+Successfully uploaded notebook for chautran@ucsb.edu 🎉 🎊
+Now executing: output_dir/alvinbui@ucsb.edu_hw01.ipynb 🤔
+[NbConvertApp] Converting notebook output_dir/alvinbui@ucsb.edu_hw01.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: python3
+[NbConvertApp] Writing 218663 bytes to output_dir/alvinbui@ucsb.edu_hw01.ipynb
+Notebook: output_dir/alvinbui@ucsb.edu_hw01.ipynb executed 🎉🎊
+Now executing: output_dir/amandaho@ucsb.edu_hw01.ipynb 🤔
+[NbConvertApp] Converting notebook output_dir/amandaho@ucsb.edu_hw01.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: python3
+[NbConvertApp] Writing 117643 bytes to output_dir/amandaho@ucsb.edu_hw01.ipynb
+Notebook: output_dir/amandaho@ucsb.edu_hw01.ipynb executed 🎉🎊
+Now executing: output_dir/andrew_hong@ucsb.edu_hw01.ipynb 🤔
+[NbConvertApp] Converting notebook output_dir/andrew_hong@ucsb.edu_hw01.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: python3
+[NbConvertApp] Writing 227277 bytes to output_dir/andrew_hong@ucsb.edu_hw01.ipynb
+Notebook: output_dir/andrew_hong@ucsb.edu_hw01.ipynb executed 🎉🎊
+Now executing: output_dir/aschoettler@ucsb.edu_hw01.ipynb 🤔
+[NbConvertApp] Converting notebook output_dir/aschoettler@ucsb.edu_hw01.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: python3
+[NbConvertApp] Writing 111220 bytes to output_dir/aschoettler@ucsb.edu_hw01.ipynb
+Notebook: output_dir/aschoettler@ucsb.edu_hw01.ipynb executed 🎉🎊
+Now executing: output_dir/chautran@ucsb.edu_hw01.ipynb 🤔
+[NbConvertApp] Converting notebook output_dir/chautran@ucsb.edu_hw01.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: python3
+[NbConvertApp] Writing 102055 bytes to output_dir/chautran@ucsb.edu_hw01.ipynb
+Notebook: output_dir/chautran@ucsb.edu_hw01.ipynb executed 🎉🎊
+Now executing: output_dir/h_lin@ucsb.edu_hw01.ipynb 🤔
+[NbConvertApp] Converting notebook output_dir/h_lin@ucsb.edu_hw01.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: python3
+[NbConvertApp] Writing 159104 bytes to output_dir/h_lin@ucsb.edu_hw01.ipynb
+Notebook: output_dir/h_lin@ucsb.edu_hw01.ipynb executed 🎉🎊
+[0m[[1mINFO[0m][0m Adding file Output.txt.
+[0m[[1mINFO[0m][0m Adding file Output.txt.
+[0m[[1mINFO[0m][0m Adding file Output.txt.
+[0m[[1mINFO[0m][0m Adding file Output.txt.
+[0m[[1mINFO[0m][0m Adding file Output.txt.
+[0m[[1mINFO[0m][0m Adding file Output.txt.
+Uploading Tests for: h_lin@ucsb.edu_hw01.ipynb 🤔
+Test output successfully updated. Check it out on codePost at www.codepost.io/grade/16802
+❌!!ERROR!!❌:'bool' object has no attribute 'get'
+Uploading Tests for: amandaho@ucsb.edu_hw01.ipynb 🤔
+Test output successfully updated. Check it out on codePost at www.codepost.io/grade/16482
+Comments succesfully added. Check it out on codePost at www.codepost.io/grade/16482
+amandaho@ucsb.edu_hw01.ipynb has test output uploaded! 🎊
+Uploading Tests for: andrew_hong@ucsb.edu_hw01.ipynb 🤔
+Test output successfully updated. Check it out on codePost at www.codepost.io/grade/16803
+❌!!ERROR!!❌:'bool' object has no attribute 'get'
+Uploading Tests for: aschoettler@ucsb.edu_hw01.ipynb 🤔
+Test output successfully updated. Check it out on codePost at www.codepost.io/grade/16483
+Comments succesfully added. Check it out on codePost at www.codepost.io/grade/16483
+aschoettler@ucsb.edu_hw01.ipynb has test output uploaded! 🎊
+Uploading Tests for: alvinbui@ucsb.edu_hw01.ipynb 🤔
+Test output successfully updated. Check it out on codePost at www.codepost.io/grade/16484
+❌!!ERROR!!❌:'bool' object has no attribute 'get'
+Uploading Tests for: chautran@ucsb.edu_hw01.ipynb 🤔
+Test output successfully updated. Check it out on codePost at www.codepost.io/grade/16485
+Comments succesfully added. Check it out on codePost at www.codepost.io/grade/16485
+chautran@ucsb.edu_hw01.ipynb has test output uploaded! 🎊
+All notebooks autograded and executed 🎉🎊
