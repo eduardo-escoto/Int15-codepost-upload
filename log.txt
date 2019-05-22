@@ -72,62 +72,15 @@ Successfully uploaded notebook for alvinbui@ucsb.edu 🎉 🎊
 Successfully uploaded notebook for chautran@ucsb.edu 🎉 🎊
 Now executing: output_dir/alvinbui@ucsb.edu_hw01.ipynb 🤔
 [NbConvertApp] Converting notebook output_dir/alvinbui@ucsb.edu_hw01.ipynb to notebook
-[NbConvertApp] Executing notebook with kernel: python3
-[NbConvertApp] Writing 218663 bytes to output_dir/alvinbui@ucsb.edu_hw01.ipynb
 Notebook: output_dir/alvinbui@ucsb.edu_hw01.ipynb executed 🎉🎊
 Now executing: output_dir/amandaho@ucsb.edu_hw01.ipynb 🤔
-[NbConvertApp] Converting notebook output_dir/amandaho@ucsb.edu_hw01.ipynb to notebook
-[NbConvertApp] Executing notebook with kernel: python3
-[NbConvertApp] Writing 117643 bytes to output_dir/amandaho@ucsb.edu_hw01.ipynb
 Notebook: output_dir/amandaho@ucsb.edu_hw01.ipynb executed 🎉🎊
 Now executing: output_dir/andrew_hong@ucsb.edu_hw01.ipynb 🤔
-[NbConvertApp] Converting notebook output_dir/andrew_hong@ucsb.edu_hw01.ipynb to notebook
-[NbConvertApp] Executing notebook with kernel: python3
-[NbConvertApp] Writing 227277 bytes to output_dir/andrew_hong@ucsb.edu_hw01.ipynb
 Notebook: output_dir/andrew_hong@ucsb.edu_hw01.ipynb executed 🎉🎊
 Now executing: output_dir/aschoettler@ucsb.edu_hw01.ipynb 🤔
-[NbConvertApp] Converting notebook output_dir/aschoettler@ucsb.edu_hw01.ipynb to notebook
-[NbConvertApp] Executing notebook with kernel: python3
-[NbConvertApp] Writing 111220 bytes to output_dir/aschoettler@ucsb.edu_hw01.ipynb
 Notebook: output_dir/aschoettler@ucsb.edu_hw01.ipynb executed 🎉🎊
 Now executing: output_dir/chautran@ucsb.edu_hw01.ipynb 🤔
-[NbConvertApp] Converting notebook output_dir/chautran@ucsb.edu_hw01.ipynb to notebook
-[NbConvertApp] Executing notebook with kernel: python3
-[NbConvertApp] Writing 102055 bytes to output_dir/chautran@ucsb.edu_hw01.ipynb
 Notebook: output_dir/chautran@ucsb.edu_hw01.ipynb executed 🎉🎊
 Now executing: output_dir/h_lin@ucsb.edu_hw01.ipynb 🤔
-[NbConvertApp] Converting notebook output_dir/h_lin@ucsb.edu_hw01.ipynb to notebook
-[NbConvertApp] Executing notebook with kernel: python3
-[NbConvertApp] Writing 159104 bytes to output_dir/h_lin@ucsb.edu_hw01.ipynb
 Notebook: output_dir/h_lin@ucsb.edu_hw01.ipynb executed 🎉🎊
-[0m[[1mINFO[0m][0m Adding file Output.txt.
-[0m[[1mINFO[0m][0m Adding file Output.txt.
-[0m[[1mINFO[0m][0m Adding file Output.txt.
-[0m[[1mINFO[0m][0m Adding file Output.txt.
-[0m[[1mINFO[0m][0m Adding file Output.txt.
-[0m[[1mINFO[0m][0m Adding file Output.txt.
-Uploading Tests for: h_lin@ucsb.edu_hw01.ipynb 🤔
-Test output successfully updated. Check it out on codePost at www.codepost.io/grade/16802
-Comments succesfully added. Check it out on codePost at www.codepost.io/grade/16802
-h_lin@ucsb.edu_hw01.ipynb has test output uploaded! 🎊
-Uploading Tests for: amandaho@ucsb.edu_hw01.ipynb 🤔
-Test output successfully updated. Check it out on codePost at www.codepost.io/grade/16482
-Comments succesfully added. Check it out on codePost at www.codepost.io/grade/16482
-amandaho@ucsb.edu_hw01.ipynb has test output uploaded! 🎊
-Uploading Tests for: andrew_hong@ucsb.edu_hw01.ipynb 🤔
-Test output successfully updated. Check it out on codePost at www.codepost.io/grade/16803
-Comments succesfully added. Check it out on codePost at www.codepost.io/grade/16803
-andrew_hong@ucsb.edu_hw01.ipynb has test output uploaded! 🎊
-Uploading Tests for: aschoettler@ucsb.edu_hw01.ipynb 🤔
-Test output successfully updated. Check it out on codePost at www.codepost.io/grade/16483
-Comments succesfully added. Check it out on codePost at www.codepost.io/grade/16483
-aschoettler@ucsb.edu_hw01.ipynb has test output uploaded! 🎊
-Uploading Tests for: alvinbui@ucsb.edu_hw01.ipynb 🤔
-Test output successfully updated. Check it out on codePost at www.codepost.io/grade/16484
-Comments succesfully added. Check it out on codePost at www.codepost.io/grade/16484
-alvinbui@ucsb.edu_hw01.ipynb has test output uploaded! 🎊
-Uploading Tests for: chautran@ucsb.edu_hw01.ipynb 🤔
-Test output successfully updated. Check it out on codePost at www.codepost.io/grade/16485
-Comments succesfully added. Check it out on codePost at www.codepost.io/grade/16485
-chautran@ucsb.edu_hw01.ipynb has test output uploaded! 🎊
 All notebooks autograded and executed 🎉🎊
