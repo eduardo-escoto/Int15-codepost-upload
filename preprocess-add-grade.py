@@ -135,7 +135,7 @@ def processNotebook(notebook_path, student_email, assignment_name, ok_line_mode=
     with open(notebook_path, 'r') as json_file:
         notebook_data = json.load(json_file)
 
-    # notebook_data = correctWrongTests(notebook_data)
+    notebook_data = correctWrongTests(notebook_data)
     notebook_data = commentOKPYSubmit(notebook_data)
     # notebook_data = addCodePostSubmitCell(
         # notebook_data, student_email, assignment_name)

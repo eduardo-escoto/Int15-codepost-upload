@@ -201,20 +201,19 @@ def upload_test_output(api_key, course_name, course_period, student_email, assig
     # Parse the test output to the format desired to upload to codePost
     test_output_to_be_uploaded = parse_test_output(test_output)
 
-    # Upload test output to codePost
-    # new_file = codePost.post_file(api_key, sub[0]['id'], test_output_file_name, str(
-    #     test_output_to_be_uploaded), "txt")
+    file_to_upload = {"name": test_output_file_name,"code": test_output_to_be_uploaded, "extension": "txt"}
 
-    file_to_upload = {"name": test_output_file_name,
-                      "code": test_output_to_be_uploaded, "extension": "txt"}
-    upload = codePost.upload_submission(api_key, assn, [student_email], [
-                                        file_to_upload], mode=DEFAULT_UPLOAD_MODE)
+    upload = codePost.upload_submission(api_key, assn, [student_email], [file_to_upload], mode=DEFAULT_UPLOAD_MODE)
+
+    submission = codePost.get_assignment_submissions(api_key, assn['id'], student=student_email)
+
+    file = codePost.get_file(api_key, submission[-1]['files'][-1])
+
     print(
         "Test output successfully updated. Check it out on codePost at www.codepost.io/grade/{sub}".format(sub=sub[0]['id']))
-    # Add comments to file
-    # add_comments(api_key, test_output, new_file)
-    # print(upload)
-    add_comments(api_key, test_output, upload)
+
+    add_comments(api_key, test_output, file)
+    
     print(
         "Comments succesfully added. Check it out on codePost at www.codepost.io/grade/{sub}".format(sub=sub[0]['id']))
 
@@ -242,12 +241,12 @@ def add_comments(api_key, test_output, file):
     # example: posts a comment for each failed test
     # syntax: post_comment(api_key, file, text, pointDelta, startChar, endChar, startLine, endLine, rubricComment=None)
     # pointDelta is parsed as a negative. e.g., a pointDelta of 1 is -1 on codePost'
-    test_by_q = test_output.split("Question")
+    test_by_q = test_output.split('ok.grade("')
     line_counter = 0
     for i in test_by_q:
         if ("k.." in i):  # indicator that a single test failed
             comment_text = "### Question {question} has a failed test.".format(
-                question=i[:4])
+                question=i.split('"')[0])
             codePost.post_comment(
                 api_key, file, comment_text, 1, 0, 10, line_counter, line_counter)
         line_counter += len(i.split("\n"))-1
@@ -260,7 +259,7 @@ def get_output(notebook_data):
         for line in source:
             if('ok.grade("q' in line):
                 for output in cell["outputs"]:
-                    test_output += ''.join(output["text"])
+                    test_output += line + '\n' + ''.join(output["text"])
     return test_output
 
 
